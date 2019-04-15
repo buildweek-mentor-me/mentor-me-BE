@@ -5,6 +5,7 @@ module.exports = {
   update,
   remove,
   getAll,
+  findBy,
   findById
 };
 
@@ -30,6 +31,10 @@ async function remove(id) {
 
 async function getAll() {
   return await db("users");
+}
+
+function findBy(filter) {
+  return db("users").where(filter);
 }
 
 async function findById(id) {
