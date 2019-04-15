@@ -43,10 +43,8 @@ module.exports = {
   },
   // Production is for hosting
   production: {
-    client: "sqlite3",
-    connection: {
-      filename: "./data/mentorMe.db3"
-    },
+    client: "pg",
+    connection: productionDbConnectionString, // could be object or string
     migrations: {
       directory: "./data/migrations"
     },
