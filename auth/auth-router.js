@@ -9,7 +9,6 @@ router.post("/register", (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
-
   Users.insert(user)
     .then(saved => {
       res.status(201).json(saved);
@@ -46,7 +45,6 @@ function generateToken(user) {
   const payload = {
     subject: user.id,
     handle: user.handle,
-    // roles: ['student', 'ta']
   };
   const options = {
     expiresIn: "1d"
