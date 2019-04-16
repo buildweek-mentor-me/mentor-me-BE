@@ -30,7 +30,7 @@ async function remove(id) {
 }
 
 async function getAll() {
-  return await db("users").select("users.handle")
+  return await db("users").select("users.id, users.handle")
 }
 
 function findBy(filter) {
