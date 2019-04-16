@@ -25,7 +25,7 @@ module.exports = {
   getUserQuestions: function(userId) {
     return db("questions")
       .where({"FK_user_id": userId})
-      .then(questions => questions.map(question => mappers.questionToBody(question)));
+      .then(questions => questions.map(question => mappers.ToBody(question)));
   },
   insert: function(user) {
     return db("users")

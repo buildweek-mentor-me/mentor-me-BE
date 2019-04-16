@@ -26,8 +26,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    await Questions.insert(req.body);
-    res.status(201).json({ message: "successfully posted" });
+    const question = await Questions.insert(req.body);
+    res.status(201).json(question);
   } catch (error) {
     res.status(500).json({
       message: "error adding question",

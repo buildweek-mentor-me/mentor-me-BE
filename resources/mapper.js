@@ -1,6 +1,7 @@
 module.exports = {
   userToBody,
-  questionToBody
+  questionToBody,
+  ToBody
 };
 
 // Use these if you need true/false in db
@@ -26,8 +27,22 @@ function userToBody(user) {
   return result;
 }
 
-function questionToBody(action) {
+function questionToBody(question) {
+  const result = {
+    ...question
+  };
+
+  if (question.answers) {
+    result.answers = question.answers.map(answer => ({
+      ...answer
+    }));
+  }
+
+  return result;
+}
+
+function ToBody(thing) {
   return {
-    ...action
+    ...thing
   };
 }
