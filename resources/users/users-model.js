@@ -30,7 +30,11 @@ module.exports = {
   insert: function(user) {
     return db("users")
       .insert(user)
+      .returning("id")
       .then(([id]) => this.get(id));
+  },
+  findBy: function(filter) {
+    return db('users').where(filter);
   },
   update: function(id, change) {
     return db("users")
