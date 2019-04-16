@@ -10,13 +10,13 @@ module.exports = {
         .then(answer => mappers.ToBody(answer));
     }
 
-    return db("questions").then(questions => {
-      return questions.map(question => mappers.ToBody(question));
+    return db("answers").then(answers => {
+      return answers.map(answer => mappers.ToBody(answer));
     });
   },
-  insert: function(question) {
-    return db("questions")
-      .insert(question)
+  insert: function(answer) {
+    return db("answers")
+      .insert(answer)
       .returning("id")
       .then(([id]) => this.get(id));
   }
