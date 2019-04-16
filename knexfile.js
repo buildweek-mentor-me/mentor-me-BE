@@ -2,24 +2,21 @@
 
 // if no DATABASE_URL env variable use this object
 const localPg = {
-  host: "localhost",
+  host: "127.0.0.1",
   database: "mentor-me",
   user: "user",
-  password: "hired"
+  password: "password"
 };
 const productionDbConnectionString = process.env.DATABASE_URL || localPg;
 
 module.exports = {
   development: {
-    client: "sqlite3",
+    client: 'pg',
     connection: {
-      filename: "./data/mentorMe.db3"
-    },
-    useNullAsDefault: true,
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run("PRAGMA foreign_keys = ON", done);
-      }
+      host: 'localhost',
+      user: 'dylandislers',
+      password: 'password',
+      database: 'mentor_me',
     },
     migrations: {
       directory: "./data/migrations"
@@ -29,9 +26,12 @@ module.exports = {
     }
   },
   testing: {
-    client: "sqlite3",
+    client: "pg",
     connection: {
-      filename: "./data/test.db3"
+      host: 'localhost',
+      user: 'dylandislers',
+      password: 'password',
+      database: 'mentor_me',
     },
     useNullAsDefault: true,
     migrations: {
