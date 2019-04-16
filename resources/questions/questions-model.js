@@ -1,5 +1,5 @@
 const db = require("../../data/dbConfig.js");
-const mappers = require("../mappers.js");
+const mappers = require("../mapper");
 
 module.exports = {
   get: function(id) {
@@ -17,6 +17,7 @@ module.exports = {
   insert: function(question) {
     return db("questions")
       .insert(question)
+      .returning("id")
       .then(([id]) => this.get(id));
   }
 };

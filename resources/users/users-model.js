@@ -18,7 +18,7 @@ module.exports = {
       });
     }
 
-    return userQuery.then(users => {
+    return usersQuery.then(users => {
       return users.map(user => mappers.userToBody(user));
     });
   },
