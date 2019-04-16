@@ -1,44 +1,46 @@
-const db = require("../../data/dbConfig");
+const db = require("../../data/dbConfig.js");
+const mappers = require('../mapper');
 
 module.exports = {
-  insert,
-  update,
-  remove,
-  getAll,
-  findBy,
-  findById
+  get: function(id) {
+    let usersQuery = db("users as u");
+
+    if (id) {
+      usersQuery.where({"u.id": id}).first();
+
+      const promises = [usersQuery, this.getUserQuestions(id)];
+
+      return Promise.all(promises).then( results => {
+        let [user, questions] = results;
+        user.questions = questions;
+
+        return mappers.userToBody(user);
+      });
+    }
+
+    return userQuery.then(users => {
+      return users.map(user => mappers.userToBody(user));
+    });
+  },
+  getUserQuestions: function(userId) {
+    return db("questions")
+      .where({"FK_user_id": userId})
+      .then(questions => questions.map(question => mappers.questionToBody(question)));
+  },
+  insert: function(user) {
+    return db("users")
+      .insert(user)
+      .then(([id]) => this.get(id));
+  },
+  update: function(id, change) {
+    return db("users")
+      .where({"id": id})
+      .update(change)
+      .then(count => (count > 0 ? this.get(id) : null))
+  },
+  remove: function(id) {
+    return db("users")
+    .where({"id": id})
+    .del()
+  }
 };
-
-async function insert(user) {
-  const [id] = await db("users").insert(user).returning('id');
-  return db("users")
-    .where({ id })
-    .first();
-}
-
-async function update(id, changes) {
-  await db("users")
-    .where({ id })
-    .update(changes);
-  return db("users").where({ id });
-}
-
-async function remove(id) {
-  await db("users")
-    .where({ id })
-    .del();
-}
-
-async function getAll() {
-  return await db("users").select("users.id", "users.handle")
-}
-
-function findBy(filter) {
-  return db("users").where(filter);
-}
-
-async function findById(id) {
-  return await db("users")
-    .where({ id })
-    .first();
-}
