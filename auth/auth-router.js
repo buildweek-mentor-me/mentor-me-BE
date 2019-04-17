@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const secret = require("../api/secret.js").jwtSecret;
+const secret = require("./secret").jwtSecret;
 const Users = require("../resources/users/users-model.js");
 
 // for endpoints beginning with /auth
@@ -40,7 +40,26 @@ router.post("/login", (req, res) => {
       res.status(500).json(error);
     });
 });
-2;
+
+router.get('/decode', async (req, res) => {
+  try {
+    const token = await req.headers.authorization;
+    if (token) {
+      await jwt.verify(token, secret, (error, decodedToken) => {
+        if (error) {
+          res.status(401).json({ message: 'uh oh something went wrong' })
+        } else {
+          res.status(200).json(decodedToken)
+        }
+      })
+    } else {
+      res.status(401).json({ message: 'error no token provided' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'error getting info' })
+  }
+})
+
 // STEP 2 - token generator function
 function generateToken(user) {
   const payload = {
