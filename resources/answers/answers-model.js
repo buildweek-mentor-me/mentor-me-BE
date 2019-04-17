@@ -19,5 +19,10 @@ module.exports = {
       .insert(answer)
       .returning("id")
       .then(([id]) => this.get(id));
+  },
+  remove: function(id) {
+    return db("answers")
+      .where({ id })
+      .del();
   }
 };
