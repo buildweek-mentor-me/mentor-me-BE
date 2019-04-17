@@ -52,7 +52,7 @@ router.delete("/:id", async (req, res) => {
     await Questions.remove(id);
     res.status(200).json({ message: "successfully deleted" });
   } catch (error) {
-    res.status(500).json({ message: "error deleting" });
+    res.status(500).json({ message: "error deleting", error });
   }
 });
 
