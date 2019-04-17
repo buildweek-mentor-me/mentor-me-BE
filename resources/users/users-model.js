@@ -1,16 +1,16 @@
 const db = require("../../data/dbConfig.js");
-const mappers = require('../mapper');
+const mappers = require("../mapper");
 
 module.exports = {
   get: function(id) {
     let usersQuery = db("users as u");
 
     if (id) {
-      usersQuery.where({"u.id": id}).first();
+      usersQuery.where({ "u.id": id }).first();
 
       const promises = [usersQuery, this.getUserQuestions(id)];
 
-      return Promise.all(promises).then( results => {
+      return Promise.all(promises).then(results => {
         let [user, questions] = results;
         user.questions = questions;
 
@@ -24,7 +24,7 @@ module.exports = {
   },
   getUserQuestions: function(userId) {
     return db("questions")
-      .where({"FK_user_id": userId})
+      .where({ FK_user_id: userId })
       .then(questions => questions.map(question => mappers.ToBody(question)));
   },
   insert: function(user) {
@@ -34,17 +34,17 @@ module.exports = {
       .then(([id]) => this.get(id));
   },
   findBy: function(filter) {
-    return db('users').where(filter);
+    return db("users").where(filter);
   },
   update: function(id, change) {
     return db("users")
-      .where({"id": id})
+      .where({ id: id })
       .update(change)
-      .then(count => (count > 0 ? this.get(id) : null))
+      .then(count => (count > 0 ? this.get(id) : null));
   },
   remove: function(id) {
     return db("users")
-    .where({"id": id})
-    .del()
+      .where({ id: id })
+      .del();
   }
 };

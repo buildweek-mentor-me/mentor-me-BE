@@ -35,13 +35,13 @@ module.exports = {
   },
   update: function(id, changes) {
     return db("questions")
-    .where({ id })
-    .update(changes)
-    .then(count => (count > 0 ? this.get(id) : null))
+      .where({ id })
+      .update(changes)
+      .then(count => (count > 0 ? this.get(id) : null));
   },
   remove: function(id) {
     return db("questions")
-    .where({id})
-    .del()
+      .where({ id })
+      .del();
   }
 };

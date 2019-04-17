@@ -2,9 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable("answers", answers => {
     answers.increments();
     answers.string("body", 128).notNullable();
-    answers
-      .timestamp("created_at", { useTz: true })
-      .defaultTo(knex.fn.now(6));
+    answers.timestamp("created_at", { useTz: true }).defaultTo(knex.fn.now(6));
     answers.string("author").notNullable();
     answers.integer("likes");
     answers

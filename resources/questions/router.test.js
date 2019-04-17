@@ -9,9 +9,8 @@ describe("QUESTION", () => {
     });
     it("Returns an Object", async () => {
       const res = await request(server)
-        .put("/questions")
+        .put("/questions/1")
         .send({
-          id: 1,
           title: "Hello Wurrld",
           body: "this is the body of the question",
           author: "dylan",
@@ -19,5 +18,8 @@ describe("QUESTION", () => {
         });
       expect(res.body).toBeInstanceOf(Object);
     });
+  });
+
+  describe("POST", () => {
   });
 });

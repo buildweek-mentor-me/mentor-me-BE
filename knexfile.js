@@ -11,12 +11,12 @@ const productionDbConnectionString = process.env.DATABASE_URL || localPg;
 
 module.exports = {
   development: {
-    client: 'pg',
+    client: "pg",
     connection: {
-      host: 'localhost',
-      user: 'dylandislers',
-      password: 'password',
-      database: 'mentor_me',
+      host: "localhost",
+      user: "dylandislers",
+      password: "password",
+      database: "mentor_me"
     },
     migrations: {
       directory: "./data/migrations"
@@ -28,10 +28,10 @@ module.exports = {
   testing: {
     client: "pg",
     connection: {
-      host: 'localhost',
-      user: 'dylandislers',
-      password: 'password',
-      database: 'mentor_me',
+      host: "localhost",
+      user: "dylandislers",
+      password: "password",
+      database: "mentor_me"
     },
     useNullAsDefault: true,
     migrations: {
