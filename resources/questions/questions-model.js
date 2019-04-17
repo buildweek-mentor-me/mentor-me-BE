@@ -27,27 +27,21 @@ module.exports = {
       .where({ FK_question_id: questionId })
       .then(answers => answers.map(answer => mappers.ToBody(answer)));
   },
-  // get: function(id) {
-  //   if (id) {
-  //     return db("questions")
-  //       .where({ id })
-  //       .first()
-  //       .then(question => mappers.questionToBody(question));
-  //   }
-
-  //   return db("questions").then(questions => {
-  //     return questions.map(question => mappers.questionToBody(question));
-  //   });
-  // },
   insert: function(question) {
     return db("questions")
       .insert(question)
       .returning("id")
       .then(([id]) => this.get(id));
   },
+  update: function(id, changes) {
+    return db("questions")
+      .where({ id })
+      .update(changes)
+      .then(count => (count > 0 ? this.get(id) : null));
+  },
   remove: function(id) {
     return db("questions")
-    .where({id})
-    .del()
+      .where({ id })
+      .del();
   }
 };

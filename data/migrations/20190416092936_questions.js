@@ -4,8 +4,8 @@ exports.up = function(knex, Promise) {
     questions.string("title", 128).notNullable();
     questions.string("body", 128).notNullable();
     questions
-      .timestamp("created_at", { useTz: true })
-      .defaultTo(knex.fn.now(6));
+      .datetime("created_at")
+      .defaultTo(Date.now());
     questions.string("author").notNullable();
     questions.integer("likes");
     questions

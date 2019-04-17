@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const secret = require('../api/secret.js').jwtSecret;
+const secret = require("../api/secret.js").jwtSecret;
 const Users = require("../resources/users/users-model.js");
 
 // for endpoints beginning with /auth
@@ -14,7 +14,7 @@ router.post("/register", (req, res) => {
       res.status(201).json(saved);
     })
     .catch(error => {
-      res.status(500).json({message: 'error registering', error: error});
+      res.status(500).json({ message: "error registering", error: error });
     });
 });
 
@@ -40,12 +40,12 @@ router.post("/login", (req, res) => {
       res.status(500).json(error);
     });
 });
-2
+2;
 // STEP 2 - token generator function
 function generateToken(user) {
   const payload = {
     subject: user.id,
-    handle: user.handle,
+    handle: user.handle
   };
   const options = {
     expiresIn: "1d"
