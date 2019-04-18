@@ -40,11 +40,6 @@ module.exports = {
       .then(count => (count > 0 ? this.get(id) : null));
   },
   updateLikes: function(id) {
-    // return db("questions")
-    //   .where({ id })
-    //   .returning("id")
-    //   .update({ likes: knex.raw("likes + 1") })
-    //   .then(count => (count > 0 ? this.get(id) : null));
     return db("questions")
       .where({ id })
       .increment("likes", 1)
