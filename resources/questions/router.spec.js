@@ -21,5 +21,16 @@ describe("QUESTION", () => {
   });
 
   describe("POST", () => {
+    it('201 OK', async () => {
+      const res = await request(server)
+      .post("/questions")
+      .send({
+        title: "Jello World",
+        body: "this is the body of the question",
+        author: "dylan",
+        FK_user_id: "1"
+      })
+      expect(res.status).toBe(201);
+    });
   });
 });
