@@ -47,6 +47,16 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+router.put("/:id/like", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const liked = await Questions.updateLikes(id);
+    res.status(200).json(liked);
+  } catch (error) {
+    res.status(500).json({ message: "error liking", error });
+  }
+});
+
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;

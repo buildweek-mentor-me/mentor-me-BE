@@ -1,3 +1,5 @@
+// insert this middleware on any route you want to restrict access to
+
 const jwt = require("jsonwebtoken");
 const secret = require("./secret.js");
 

@@ -39,6 +39,12 @@ module.exports = {
       .update(changes)
       .then(count => (count > 0 ? this.get(id) : null));
   },
+  updateLikes: function(id) {
+    return db("questions")
+      .where({ id })
+      .increment("likes", 1)
+      .then(count => (count > 0 ? this.get(id) : null));
+  },
   remove: function(id) {
     return db("questions")
       .where({ id })
