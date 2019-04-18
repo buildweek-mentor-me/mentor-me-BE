@@ -6,8 +6,6 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .unique();
     users
-      .string("profile_pic_url");
-    users
       .string("email", 128)
       .notNullable()
       .unique();

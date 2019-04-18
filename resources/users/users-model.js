@@ -18,7 +18,7 @@ module.exports = {
       });
     }
 
-    return usersQuery.then(users => {
+    return db.from("users as u").select("u.id", "u.handle", "u.profile_pic_url").then(users => {
       return users.map(user => mappers.userToBody(user));
     });
   },
@@ -46,5 +46,11 @@ module.exports = {
     return db("users")
       .where({ id: id })
       .del();
+  },
+  updatePassword: function(id, password) {
+    return db("users")
+      .where({ id })
+      .update({ password });
   }
 };
+
