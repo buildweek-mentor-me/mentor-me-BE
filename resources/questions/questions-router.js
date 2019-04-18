@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const restricted = require('../../auth/restricted-middleware');
+const restricted = require("../../auth/restricted-middleware");
 
 const Questions = require("./questions-model");
 
-router.get("/", restricted, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const questions = await Questions.get();
     res.status(200).json(questions);
@@ -15,7 +15,7 @@ router.get("/", restricted, async (req, res) => {
   }
 });
 
-router.get("/:id", restricted, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const question = await Questions.get(id);
