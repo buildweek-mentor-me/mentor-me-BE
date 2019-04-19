@@ -2,9 +2,11 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const admin = require("firebase-admin");
-// firebase
-const serviceAccount = require("../mentor/service.json");
+
+// for firebase
+// const admin = require("firebase-admin");
+// const serviceAccount = require("../mentor/service.json");
+
 // server
 const server = express();
 // routers
@@ -21,10 +23,11 @@ server.use("/users", usersRouter);
 server.use("/questions", questionsRouter);
 server.use("/answers", answersRouter);
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://mentor-mee.firebaseio.com"
-});
+// for firebase
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://mentor-mee.firebaseio.com"
+// });
 
 server.get("/", (req, res) => {
   res.send("Hello World");
