@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
       .timestamp("created_at")
       .defaultTo(knex.fn.now());
     questions.string("author").notNullable();
-    questions.integer("likes");
+    questions.integer("likes")
     questions
       .integer("FK_user_id")
       .unsigned()
