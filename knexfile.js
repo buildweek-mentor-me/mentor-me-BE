@@ -31,7 +31,7 @@ module.exports = {
       host: "localhost",
       user: "dylandislers",
       password: "password",
-      database: "mentor_me"
+      database: "test_db"
     },
     useNullAsDefault: true,
     migrations: {
