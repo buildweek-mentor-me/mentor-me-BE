@@ -8,13 +8,32 @@ This is the server side code for the app.
 
 ## folder structure
 
-.
-├── api  
-├── auth  
-├── data  
-├── node_modules  
-├── resources
-├─ index
-├─ knexfile
-├─ package.json
-├─ readme
+
+- api
+  - server
+  - server.spec
+- auth
+  - auth- router
+  - restricted- middleware
+  - secret
+- data
+  - migrations
+  - seeds
+  - dbConfig
+- resources
+  - answers
+    - answers- model
+    - answers- router
+    - router.spec
+  - questions
+    - questions- model
+    - questions- router
+    - router.spec
+  - users
+    - users- model
+    - users- router
+    - router.spec
+  - mapper
+- index
+- knexfile
+
