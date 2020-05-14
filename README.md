@@ -1,6 +1,4 @@
-# mentor-me-BE
-
-Entrepreneurs don’t always have access to a mentor or somebody that can give them advice. Our app allows entrepreneurs to easily find help anywhere anytime.
+# Mentor Me Backend
 
 Mentor Me connects people with questions to people with answers.
 
